@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhtrma Universe 👑</title>
+
+<style>
+:root {
+  --bg:#10070d;
+  --gold:#f5d18b;
+  --rose:#ff8fb1;
+  --text:#fff2f7;
+  --muted:#d6b8c5;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;overflow-x:hidden;
+  font-family:"Segoe UI",Arial,sans-serif;color:var(--text);
+  background:radial-gradient(circle at 15% 10%,#49162e,transparent 35%),
+  radial-gradient(circle at 85% 85%,#381027,transparent 35%),var(--bg);
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.background-glow{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(135deg,#1b0814,#10070d,#250b1b);
+  background-size:300% 300%;animation:bgFlow 15s ease infinite
+}
+@keyframes bgFlow{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+#effects{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:5}
+.particle{position:absolute;bottom:-50px;opacity:0;animation:floatUp linear forwards}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0) scale(.6);opacity:0}
+  10%{opacity:.85}
+  100%{transform:translateY(-115vh) rotate(360deg) scale(1.3);opacity:0}
+}
+header{text-align:center;padding:30px 15px 18px;position:relative}
+.top-music-button{
+  position:absolute;top:18px;right:18px;z-index:20;
+  border:1px solid var(--gold);border-radius:30px;padding:11px 17px;
+  color:var(--text);background:linear-gradient(135deg,#541a37,#8e244f);
+  box-shadow:0 0 15px #b9477855;font-weight:bold;transition:.3s
+}
+.top-music-button:hover{transform:scale(1.06);box-shadow:0 0 22px var(--rose)}
+.crown{font-size:44px;animation:crownFloat 3s ease-in-out infinite}
+@keyframes crownFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(5deg)}}
+h1{
+  font-size:clamp(28px,6vw,48px);margin:10px 0;color:var(--gold);
+  text-shadow:0 0 12px #c17b8c,0 0 30px #7d244a;animation:titleGlow 3s ease-in-out infinite
+}
+@keyframes titleGlow{0%,100%{text-shadow:0 0 10px #c17b8c,0 0 25px #7d244a}50%{text-shadow:0 0 18px #ffb7ce,0 0 42px #a83b67}}
+.subtitle{color:var(--muted);max-width:650px;margin:0 auto;line-height:1.7}
+.top-line{height:2px;width:min(400px,75%);margin:22px auto 0;background:linear-gradient(90deg,transparent,var(--gold),var(--rose),transparent);animation:lineGlow 3s ease-in-out infinite}
+@keyframes lineGlow{0%,100%{opacity:.4;transform:scaleX(.7)}50%{opacity:1;transform:scaleX(1)}}
+nav{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;padding:10px 12px 22px}
+.nav-btn,.btn{border:1px solid #8e4663;color:var(--text);background:linear-gradient(135deg,#361326,#541a37);padding:11px 16px;border-radius:30px;transition:.25s}
+.nav-btn:hover,.btn:hover{transform:translateY(-3px);box-shadow:0 0 18px #b94778}
+.nav-btn.active{color:#210b17;background:linear-gradient(135deg,var(--gold),var(--rose));font-weight:bold}
+main{max-width:1000px;margin:auto;padding:0 15px 35px}
+.progress-wrap{height:6px;background:#3b2431;border-radius:20px;overflow:hidden;margin:0 0 18px}
+#progress{height:100%;width:16.67%;background:linear-gradient(90deg,var(--rose),var(--gold));transition:width .4s}
+.page{display:none;animation:pageEnter .55s ease both}
+.page.active{display:block}
+@keyframes pageEnter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.page-heading{text-align:center;margin:10px 0 22px}
+.page-heading h2{color:var(--gold);font-size:clamp(24px,4vw,34px);margin-bottom:8px}
+.page-heading p{color:var(--muted);line-height:1.7}
+.card{
+  background:linear-gradient(145deg,#291321ef,#160b14f5);
+  border:1px solid #70405a;border-radius:22px;padding:22px;margin:17px 0;
+  box-shadow:0 12px 35px #0005;position:relative;overflow:hidden;transition:.3s
+}
+.card::before{content:"";position:absolute;left:-120%;top:0;width:65%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:borderSweep 6s linear infinite}
+@keyframes borderSweep{0%{left:-120%}100%{left:150%}}
+.card:hover{border-color:var(--rose);box-shadow:0 10px 35px #8c285355}
+.card h3{color:var(--rose);margin-top:0}
+.card p,.card li{line-height:1.85;color:#f5dce7}
+.center{text-align:center}
+.big-emoji{font-size:44px;display:block;margin-bottom:10px;animation:bounce 3s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.royal-message{font-size:clamp(17px,3vw,21px);line-height:2}
+.gold{color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+input,select,textarea{width:100%;border:1px solid #84506a;background:#120a10;color:var(--text);padding:12px;border-radius:12px;margin:7px 0 13px}
+input[type=file]{padding:10px}
+input[type=color]{min-height:45px;padding:5px}
+textarea{min-height:100px;resize:vertical}
+label{color:var(--gold);display:block;margin-top:8px}
+.output{display:none;background:#3b162a;border:1px solid #8e4663;border-radius:15px;padding:16px;margin-top:14px;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;animation:pageEnter .4s ease}
+.output.show{display:block}
+.flower-row{font-size:clamp(30px,6vw,48px);padding:15px 0}
+.flower-row span{display:inline-block;animation:flowerSway 2.8s ease-in-out infinite}
+.flower-row span:nth-child(even){animation-delay:.5s}
+@keyframes flowerSway{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg) translateY(-8px)}}
+.music-animation{display:flex;align-items:center;justify-content:center;gap:16px;font-size:34px;min-height:85px}
+.music-animation span{display:inline-block;animation:musicDance 1.4s ease-in-out infinite}
+.music-animation span:nth-child(2){animation-delay:.2s}
+.music-animation span:nth-child(3){animation-delay:.4s}
+.music-animation span:nth-child(4){animation-delay:.6s}
+.music-animation span:nth-child(5){animation-delay:.8s}
+@keyframes musicDance{0%,100%{transform:translateY(4px) rotate(-10deg);opacity:.65}50%{transform:translateY(-16px) rotate(10deg);opacity:1}}
+.equalizer{display:flex;align-items:center;justify-content:center;gap:5px;height:55px;margin:10px auto}
+.equalizer span{width:7px;height:12px;border-radius:10px;background:var(--rose);animation:eq .8s ease-in-out infinite alternate;animation-play-state:paused}
+.equalizer.playing span{animation-play-state:running}
+.equalizer span:nth-child(2){animation-delay:.2s}.equalizer span:nth-child(3){animation-delay:.4s}.equalizer span:nth-child(4){animation-delay:.1s}.equalizer span:nth-child(5){animation-delay:.3s}.equalizer span:nth-child(6){animation-delay:.5s}.equalizer span:nth-child(7){animation-delay:.15s}
+@keyframes eq{from{height:8px}to{height:45px}}
+.pulse-heart{display:inline-block;animation:heartbeat 1.1s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+.navigation{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 0 5px}
+#pageNumber{color:var(--gold);text-align:center;font-size:14px}
+.small-note{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:22px 15px 35px;line-height:1.8}
+@media(max-width:650px){
+  header{padding-top:15px}
+  .top-music-button{position:relative;top:auto;right:auto;display:block;margin:0 auto 18px}
+  .grid{grid-template-columns:1fr}
+  .card{padding:17px}
+  .nav-btn{padding:9px 12px;font-size:13px}
+  .navigation .btn{padding:10px 12px;font-size:13px}
+}
+</style>
+</head>
+<body>
+<div class="background-glow"></div>
+<div id="effects" aria-hidden="true"></div>
+
+<header>
+  <button class="top-music-button" onclick="goToPage(5)">🎵 Music Room</button>
+  <div class="crown">👑</div>
+  <h1>Muhtrma Universe</h1>
+  <p class="subtitle">A little royal world full of smiles, care, funny moments and beautiful wishes. 💗</p>
+  <div class="top-line"></div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="goToPage(0)">🏰 Home</button>
+  <button class="nav-btn" onclick="goToPage(1)">💌 Messages</button>
+  <button class="nav-btn" onclick="goToPage(2)">🔐 Secret Letters</button>
+  <button class="nav-btn" onclick="goToPage(3)">🌷 Care Corner</button>
+  <button class="nav-btn" onclick="goToPage(4)">😂 Funny Court</button>
+  <button class="nav-btn" onclick="goToPage(5)">🎵 Music & Magic</button>
+</nav>
+
+<main>
+<div class="progress-wrap"><div id="progress"></div></div>
+
+<section class="page active">
+  <div class="page-heading"><h2>Welcome, Muhtrma Ji 👑</h2><p>Your smile makes this little universe brighter.</p></div>
+  <div class="card center">
+    <span class="big-emoji">🏰</span>
+    <p class="royal-message">Assalam-o-Alaikum, <span class="gold">Muhtrma Ji!</span><br>Welcome to your own little universe. 💗<br>Yahan choti choti khushiyan, caring wishes aur funny moments hain.<br><span class="pulse-heart">💖</span></p>
+    <button class="btn" onclick="show('homeOut','👑 Allah Pak aap ko hamesha khush, sehatmand aur pur-sukoon rakhay. Ameen. 💗')">✨ Royal Welcome</button>
+    <div id="homeOut" class="output"></div>
+  </div>
+  <div class="grid">
+    <div class="card center"><span class="big-emoji">🌹</span><h3>Respect & Care</h3><p>Har achi dosti ki bunyaad izzat aur understanding hoti hai.</p></div>
+    <div class="card center"><span class="big-emoji">😊</span><h3>Smile Mission</h3><p>Aaj ka mission: apni smile ko yaad rakhna!</p></div>
+  </div>
+</section>
+
+<section class="page">
+  <div class="page-heading"><h2>Little Messages 💌</h2><p>Jab bhi mood ho, koi pyara sa message open karein.</p></div>
+  <div class="card center"><span class="big-emoji">💗</span><h3>A Message for You</h3><button class="btn" onclick="randomMessage()">💌 Open a Message</button><div id="messageOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">🌈</span><h3>Good Vibes Machine</h3><button class="btn" onclick="vibes()">🌟 Generate Good Vibes</button><div id="vibesOut" class="output"></div></div>
+  <div class="card"><h3>✍️ Apna Message Likhein</h3><textarea id="customText" placeholder="Yahan apna message likhein..."></textarea><button class="btn" onclick="customMessage()">Show My Message 💗</button><div id="customOut" class="output"></div></div>
+</section>
+
+<section class="page">
+  <div class="page-heading"><h2>Secret Letters 🔐</h2><p>Har letter mein ek alag sa message chhupa hai.</p></div>
+  <div class="grid">
+    <div class="card center"><span class="big-emoji">💌</span><h3>Letter 1</h3><button class="btn" onclick="letter(1)">Open Letter</button></div>
+    <div class="card center"><span class="big-emoji">🌷</span><h3>Letter 2</h3><button class="btn" onclick="letter(2)">Open Letter</button></div>
+    <div class="card center"><span class="big-emoji">⭐</span><h3>Letter 3</h3><button class="btn" onclick="letter(3)">Open Letter</button></div>
+    <div class="card center"><span class="big-emoji">🎁</span><h3>Mystery Letter</h3><button class="btn" onclick="letter(Math.floor(Math.random()*3)+1)">Surprise Me</button></div>
+  </div>
+  <div id="letterOut" class="output"></div>
+</section>
+
+<section class="page">
+  <div class="page-heading"><h2>Care Corner 🌷</h2><p>Apna khayal rakhna bhi zaroori hai.</p></div>
+  <div class="card center"><div class="flower-row"><span>🌷</span><span>🌸</span><span>🌹</span><span>🌺</span><span>🌼</span></div><h3>Daily Care Reminder</h3><button class="btn" onclick="care()">🌷 My Care Reminder</button><div id="careOut" class="output"></div></div>
+  <div class="card"><h3>😊 Aap ka mood kaisa hai?</h3><select id="mood"><option value="happy">😊 Happy</option><option value="sad">😔 Sad</option><option value="tired">😴 Tired</option><option value="angry">😤 Angry</option><option value="excited">🤩 Excited</option><option value="quiet">🌙 Quiet</option></select><button class="btn" onclick="checkMood()">Tell Me Something</button><div id="moodOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">💧</span><h3>Water Break</h3><button class="btn" onclick="show('waterOut','💧 Thora pani piyen, break lein aur apna khayal rakhein. 🌷')">Reminder</button><div id="waterOut" class="output"></div></div>
+</section>
+
+<section class="page">
+  <div class="page-heading"><h2>Funny Court & Awards 😂</h2><p>Funny sa faisla aur royal awards!</p></div>
+  <div class="card center"><span class="big-emoji">⚖️</span><h3>Pagalistan Funny Court</h3><button class="btn" onclick="court()">🔨 Announce Verdict</button><div id="courtOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">🏆</span><h3>Queen Awards</h3><button class="btn" onclick="award()">👑 Get My Award</button><div id="awardOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">🎲</span><h3>Mystery Button</h3><button class="btn" onclick="mystery()">🎁 Surprise</button><div id="mysteryOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">😄</span><h3>Smile Counter</h3><h2 id="smileCount" class="gold">0 😊</h2><button class="btn" onclick="smile()">+1 Smile</button><button class="btn" onclick="resetSmile()">Reset</button></div>
+</section>
+
+<section class="page">
+  <div class="page-heading"><h2>Music & Magic 🎵</h2><p>Your own music room, flowers and animated magic.</p></div>
+
+  <div class="card center">
+    <span class="big-emoji">🎧</span><h3>Queen's Music Room</h3>
+    <p>Song isi website ke folder se load hota hai. Upload karne ki zaroorat nahi.</p>
+    <audio id="songPlayer" controls loop preload="auto" style="width:100%;margin-top:10px">
+      <source src="music.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+    <div class="equalizer" id="equalizer"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="music-animation"><span>🎵</span><span>💗</span><span>🎶</span><span>🌹</span><span>✨</span></div>
+    <button class="btn" onclick="playSong()">▶ Play</button>
+    <button class="btn" onclick="pauseSong()">⏸ Pause</button>
+    <button class="btn" onclick="stopSong()">⏹ Stop</button>
+    <p class="small-note">Agar browser autoplay block kare, Play button ek baar press karein.</p>
+    <div id="songOut" class="output"></div>
+  </div>
+
+  <div class="card center"><div class="flower-row"><span>🌹</span><span>🌷</span><span>🌸</span><span>🌼</span><span>💐</span></div><h3>Magic Flower Garden</h3><label for="flowerColor">Choose a colour</label><input type="color" id="flowerColor" value="#ff8fb1"><button class="btn" onclick="changeGarden()">🌺 Change Garden Colour</button><div id="gardenOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">✨</span><h3>Magic Sparkle Shower</h3><button class="btn" onclick="sparkle()">✨ Start Magic</button><button class="btn" onclick="stopEffects()">🛑 Stop Effects</button><div id="magicOut" class="output"></div></div>
+  <div class="card center"><span class="big-emoji">📸</span><h3>Memory Picture</h3><input type="file" id="photoFile" accept="image/*"><img id="memoryPhoto" alt="Selected picture" style="display:none;max-width:100%;max-height:400px;border-radius:18px;margin-top:12px"><button class="btn" onclick="removePhoto()">Remove Picture</button><div id="photoOut" class="output"></div></div>
+</section>
+
+<div class="navigation">
+  <button class="btn" id="previousBtn" onclick="changePage(-1)">⬅ Previous</button>
+  <div id="pageNumber">Page 1 of 6</div>
+  <button class="btn" id="nextBtn" onclick="changePage(1)">Next ➜</button>
+</div>
+</main>
+
+<footer>Made with respect, care and a little Pagalistan magic. 👑<br><span class="gold">May your days be full of peace and smiles. 💗</span></footer>
+
+<script>
+const pages=[...document.querySelectorAll(".page")];
+const navButtons=[...document.querySelectorAll(".nav-btn")];
+let currentPage=0;
+
+function renderPage(){
+  pages.forEach((p,i)=>p.classList.toggle("active",i===currentPage));
+  navButtons.forEach((b,i)=>b.classList.toggle("active",i===currentPage));
+  document.getElementById("pageNumber").textContent=`Page ${currentPage+1} of ${pages.length}`;
+  document.getElementById("progress").style.width=((currentPage+1)/pages.length*100)+"%";
+  document.getElementById("previousBtn").textContent=currentPage===0?"⬅ Previous (Last Page)":"⬅ Previous";
+  document.getElementById("nextBtn").textContent=currentPage===pages.length-1?"Next (Home) ➜":"Next ➜";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function changePage(step){currentPage=(currentPage+step+pages.length)%pages.length;renderPage();}
+function goToPage(index){if(index<0||index>=pages.length)return;currentPage=index;renderPage();}
+
+function show(id,msg){const el=document.getElementById(id);el.textContent=msg;el.classList.add("show");}
+const msgs=[
+"🌷 Aap ki khushi qeemti hai. Apna khayal rakhein.",
+"👑 Aap respect aur achay rawaiye ki haqdar hain.",
+"💗 Allah Pak aap ko sukoon aur asaniyan ata farmaye. Ameen.",
+"🌸 Aaj apne liye bhi thora waqt nikalein.",
+"😊 Aap ka sukoon aur health bhi important hain.",
+"✨ Mushkil din hamesha nahi rehte."
+];
+function randomMessage(){show("messageOut",msgs[Math.floor(Math.random()*msgs.length)]);}
+function vibes(){show("vibesOut",["🌈 Choti choti khushiyon ko notice karein!","💗 Apni care karna na bhoolain.","☕ Thora break aur ek achi si smile!","🌟 Nayi umeed ke saath din shuru karein."][Math.floor(Math.random()*4)]);}
+function customMessage(){const t=document.getElementById("customText").value.trim();show("customOut",t||"Pehle apna message likhein. 💌");}
+
+const letters={
+1:"💌 Dear Muhtrma Ji,\n\nAap ki apni value hai. Apni feelings, health aur sukoon ka khayal rakhein. 🌷",
+2:"🌷 Allah Pak aap ke din asaan kare, sehat de aur dil ko sukoon ata farmaye. Ameen. 💗",
+3:"⭐ Aap ko har waqt strong banay rehna zaroori nahi. Araam karna aur apna khayal rakhna bhi important hai. 😊"
+};
+function letter(n){show("letterOut",letters[n]);}
+function care(){show("careOut",["🌷 Apni health ka khayal rakhein aur araam karein.","💧 Pani peena yaad rakhein.","🌸 Apni feelings ko ignore na karein.","🌙 Allah Pak aap ko sukoon ata farmaye. Ameen.","😊 Apne liye choti si khushi choose karein."][Math.floor(Math.random()*5)]);}
+function checkMood(){
+ const answers={
+ happy:"😊 MashAllah! Apni khushi enjoy karein.",
+ sad:"💗 Apne aap ko waqt dein. Kisi trusted person se baat karna helpful ho sakta hai.",
+ tired:"😴 Thora rest karein aur pressure kam rakhein.",
+ angry:"🌿 Thori dair ruk kar calm hon, phir baat karein.",
+ excited:"🤩 Wah! Apni positive energy enjoy karein.",
+ quiet:"🌙 Kabhi kabhi apna waqt aur khamoshi bhi zaroori hoti hai."
+ };
+ show("moodOut",answers[document.getElementById("mood").value]);
+}
+function court(){show("courtOut",["⚖️ Faisla: Aaj 3 dafa smile karna hai! 😂","🔨 Court ka hukam: Pani piyen aur araam karein.","👑 Aaj ka title: Queen of Attitude!","😂 Smile missing! Funny jokes sunne ka hukam.","🏰 Aaj unnecessary tension ki chutti hai!"][Math.floor(Math.random()*5)]);}
+function award(){show("awardOut",["🏆 Smile Queen Award!","👑 Royal Attitude Award!","🌷 Kind Heart Award!","✨ Star of the Day!","😂 Funny Drama Queen Award!"][Math.floor(Math.random()*5)]);}
+function mystery(){show("mysteryOut",["🎁 Imaginary chocolate ka gift! 🍫","🦋 Royal queen ki smile detected!","👑 Password: SmileAndShine!","😂 Pagalistan ki funny meeting shuru!","🌸 Virtual flowers aur ek pyari si dua!"][Math.floor(Math.random()*5)]);}
+let smiles=0;
+function smile(){smiles++;document.getElementById("smileCount").textContent=smiles+" 😊";if(smiles%5===0)createParticles(10);}
+function resetSmile(){smiles=0;document.getElementById("smileCount").textContent="0 😊";}
+
+/* MUSIC: file is loaded from the same folder as index.html */
+const player=document.getElementById("songPlayer");
+const equalizer=document.getElementById("equalizer");
+
+async function playSong(){
+  try{
+    await player.play();
+    show("songOut","🎵 Music is playing. Enjoy! 💗");
+  }catch(error){
+    show("songOut","Music start nahi hui. Check karein ke music.mp3 isi folder mein hai. Phir Play press karein.");
+  }
+}
+function pauseSong(){player.pause();}
+function stopSong(){player.pause();player.currentTime=0;}
+
+player.addEventListener("play",()=>equalizer.classList.add("playing"));
+player.addEventListener("pause",()=>equalizer.classList.remove("playing"));
+player.addEventListener("ended",()=>equalizer.classList.remove("playing"));
+player.addEventListener("error",()=>show("songOut","music.mp3 file nahi mil rahi ya file ka format supported nahi hai."));
+
+/* Try autoplay when page loads. Browsers may block audible autoplay. */
+window.addEventListener("load",()=>{
+  player.play().catch(()=>{
+    console.log("Autoplay blocked. Visitor can press Play.");
+  });
+});
+
+function changeGarden(){
+ const c=document.getElementById("flowerColor").value;
+ document.documentElement.style.setProperty("--rose",c);
+ document.querySelectorAll(".flower-row span").forEach(f=>f.style.filter=`drop-shadow(0 0 10px ${c})`);
+ show("gardenOut","🌺 Garden ka colour change ho gaya!");
+}
+
+const effects=document.getElementById("effects");
+const particles=["💗","✨","🌸","🌹","⭐","💫","💕"];
+let effectsStopped=false,activeParticles=0;
+function createParticles(amount=1){
+ if(effectsStopped)return;
+ for(let i=0;i<amount&&activeParticles<65;i++){
+  const p=document.createElement("span");
+  p.className="particle";
+  p.textContent=particles[Math.floor(Math.random()*particles.length)];
+  p.style.left=Math.random()*100+"%";
+  p.style.fontSize=(14+Math.random()*22)+"px";
+  p.style.animationDuration=(5+Math.random()*6)+"s";
+  p.style.animationDelay=(Math.random()*1.5)+"s";
+  effects.appendChild(p);activeParticles++;
+  p.addEventListener("animationend",()=>{p.remove();activeParticles=Math.max(0,activeParticles-1);},{once:true});
+ }
+}
+function sparkle(){effectsStopped=false;createParticles(40);show("magicOut","✨ Magic shower shuru!");}
+function stopEffects(){effectsStopped=true;effects.replaceChildren();activeParticles=0;show("magicOut","Magic effects temporarily stopped.");}
+setInterval(()=>createParticles(1),950);
+
+const photoFile=document.getElementById("photoFile");
+const photo=document.getElementById("memoryPhoto");
+let photoURL=null;
+photoFile.addEventListener("change",()=>{
+ const f=photoFile.files&&photoFile.files[0];if(!f)return;
+ if(!f.type.startsWith("image/")){show("photoOut","Image file select karein.");photoFile.value="";return;}
+ if(photoURL)URL.revokeObjectURL(photoURL);
+ photoURL=URL.createObjectURL(f);photo.src=photoURL;photo.style.display="block";
+ show("photoOut","📸 Picture preview display ho rahi hai.");
+});
+function removePhoto(){
+ photo.removeAttribute("src");photo.style.display="none";photoFile.value="";
+ if(photoURL){URL.revokeObjectURL(photoURL);photoURL=null;}
+ show("photoOut","Picture remove kar di gayi.");
+}
+renderPage();
+createParticles(8);
+window.addEventListener("beforeunload",()=>{
+ if(photoURL)URL.revokeObjectURL(photoURL);
+});
+</script>
+</body>
+</html>
